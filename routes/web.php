@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// ---------- Crear una clase para almacenar tipos static
-class Color {
-    const RED = '#ff0000';
-    const GREEN = '#00ff00';
-    const BLUE = '#0000ff';
+// ---------- Crear tipos enum, se define el nombre y el tipo: enum Nombre: tipo {}
+enum Color: string {
+    case RED = '#ff0000';
+    case GREEN = '#00ff00';
+    case BLUE = '#0000ff';
 }
 
 // ---------- Crear una clase común con propiedades y métodos POO
@@ -25,7 +25,8 @@ class Auto {
     protected $color;
 
     public function __construct() {
-        $this->color = Color::BLUE;
+        // ---------- Los tipo enum son objetos con las propiedades name y value
+        $this->color = Color::BLUE->value;
     }
 
     public function setColor($color) {
@@ -40,8 +41,11 @@ class Auto {
 Route::get('/', function () {
     $audi = new Auto();
 
-    // ---------- Las constantes son propiedades static de la clase
-    $audi->setColor(Color::RED);
+    // ---------- Se almacena el color en una variable y devolverá un enum con sus propiedades name y value
+    $color = Color::RED;
+
+    // ---------- Se accede a la propiedad value y se obtiene el mismo resultado
+    $audi->setColor($color->value);
 
     return $audi->getColor();
 });
