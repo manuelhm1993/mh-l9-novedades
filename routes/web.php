@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,35 +13,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// ---------- Crear una clase para almacenar tipos static
+class Color {
+    const RED = '#ff0000';
+    const GREEN = '#00ff00';
+    const BLUE = '#0000ff';
+}
+
+// ---------- Crear una clase común con propiedades y métodos POO
+class Auto {
+    protected $color;
+
+    public function __construct() {
+        $this->color = Color::BLUE;
+    }
+
+    public function setColor($color) {
+        $this->color = $color;
+    }
+
+    public function getColor() {
+        return $this->color;
+    }
+}
+
 Route::get('/', function () {
-    // return view('welcome');
+    $audi = new Auto();
 
-    /* // -------------- Cambio en los mutadores y accesores
-    $name = "Manuel Henriquez";
-    $name = "manuel henriquez";
-    $name = "MaNuEl HeNrIqUeZ";
-    // -------------- Los usuarios pueden ingresar su nombre en cualquier caso
+    // ---------- Las constantes son propiedades static de la clase
+    $audi->setColor(Color::RED);
 
-    // -------------- Con los mutadores pasamos todas las entradas a mínuscula o mayúscula para tener congruencia
-    $name = "manuel henriquez";
-
-    // -------------- Con los accesores recuperamos la información y la pasamos a capitalize
-    $name = "Manuel Henriquez"; */
-
-    // -------------- Simular una captura de registro
-    $name     = "MaNuEl HeNrIqUeZ";
-    $email    = "manuel@mhenriquez.com";
-    $password = bcrypt('12345678') ;
-
-    // -------------- Crear un nuevo usuario
-    /* $user = User::create([
-        "name"     => $name,
-        "email"    => $email,
-        "password" => $password
-    ]); */
-
-    // -------------- Obtener el usuario registrado
-    $user = User::first();
-
-    return $user;
+    return $audi->getColor();
 });
