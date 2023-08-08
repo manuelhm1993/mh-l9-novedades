@@ -50,7 +50,12 @@ class User extends Authenticatable
     //     $this->attributes['name'] = strtolower($value);
     // }
 
-    // ------------------ Mutadores a partir de laravel 9
+    // ------------------ Accesores hasta laravel 8
+    // public function getNameAttribute($value) {
+    //     return ucfirst($value);
+    // }
+
+    // ------------------ Mutadores y Accesores a partir de laravel 9
     /**
      * Get the user's first name.
      *
@@ -59,8 +64,8 @@ class User extends Authenticatable
     protected function name(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => ucfirst($value),    // ------------------ Transforma a capitalize al obtener
-            set: fn ($value) => strtolower($value), // ------------------ Transforma a minúsculas al registrar
+            get: fn ($value) => ucwords($value),    // ------------------ Transforma a capitalize al obtener:   Accesor
+            set: fn ($value) => strtolower($value), // ------------------ Transforma a minúsculas al registrar: Mutador
         );
     }
 }

@@ -35,11 +35,14 @@ Route::get('/', function () {
     $password = bcrypt('12345678') ;
 
     // -------------- Crear un nuevo usuario
-    $user = User::create([
+    /* $user = User::create([
         "name"     => $name,
         "email"    => $email,
         "password" => $password
-    ]);
+    ]); */
+
+    // -------------- Obtener el usuario registrado
+    $user = User::first();
 
     return $user;
 });
