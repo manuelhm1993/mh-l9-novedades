@@ -1,7 +1,9 @@
 <?php
 
-use App\Models\Color;
 use Illuminate\Support\Facades\Route;
+
+use App\Models\Color;
+use App\Enums\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,19 +17,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    // $color = Color::RED;
-
-    // $user = User::create([
-    //     "name"     => "Manuel Henriquez",
-    //     "email"    => "manuel@mhenriquez.com",
-    //     "password" => bcrypt('12345678')
-    // ]);
-
-    // $nuevoColor = ModelsColor::create([
-    //     'name' => $color->value
-    // ]);
-
     $color = Color::first();
 
     return $color->name->colorMatch();
+});
+
+// --------------- Restringir el tipo de datos enviados por la URL
+Route::get('category/{category}', function (Category $category) {
+    return $category->value;
 });
