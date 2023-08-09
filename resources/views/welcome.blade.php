@@ -49,6 +49,15 @@
                     {{-- Llamar al componente --}}
                     <x-alert>
                         <p>Esto es un contenido dinámico</p>
+
+                        {{-- Es pasa el contenido dinámico al componente alert y se invoca al slot nombrado --}}
+                        {{-- Laravel 8 --}}
+                        {{-- <x-slot name="title"> --}}
+
+                        {{-- Laravel 9 --}}
+                        <x-slot:title>
+                            <h2>Esto es un título</h2>
+                        </x-slot:title>
                     </x-alert>
 
                     <div class="grid grid-cols-1 md:grid-cols-2">
