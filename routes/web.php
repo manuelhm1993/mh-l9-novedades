@@ -4,11 +4,14 @@ use Illuminate\Support\Facades\Route;
 
 use App\CustomClasses\Acciones;
 
-use App\Models\Color;
 use App\Enums\Category;
 use App\Enums\Color as EnumsColor;
-use App\Models\Post;
+
+use App\Models\Color;
 use App\Models\User;
+use App\Models\Post;
+
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,13 +49,24 @@ Route::get('/category/{category}', function (Category $category) {
 });
 
 // --------------- scopeBindings verifica si el post le pertenece al usuario, en caso contrario retorna 404
-/* Route::get('/users/{user}/posts/{post}', function (User $user, Post $post) {
-    return [$user, $post];
-})->scopeBindings(); */
-
 // --------------- Para que funcione se deben definir las relaciones en los modelos y se puede aplicar a un grupo
 Route::scopeBindings()->group(function () {
     Route::get('/users/{user}/posts/{post}', function (User $user, Post $post) {
         return [$user, $post];
     });
+});
+
+// --------------- Solo registrar los métodos index y show del controlador de recursos
+/*Route::resource('posts', PostController::class)->only([
+    'index', 'show'
+]);*/
+
+// --------------- Registrar las rutas del controlador individualmente
+/* Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show'); */
+
+// --------------- Laravel 9 como novedad permite agrupar las rutas de un controlador
+Route::controller(PostController::class)->name('posts.')->group(function () {
+    Route::get('/posts', 'index')->name('index');
+    Route::get('/posts/{post}', 'show')->name('show');
 });
