@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
 
             $table->string('title');
-            $table->text('body');
+            $table->text('body')->fulltext(); // --------- Index fulltext, permite hacer búsquedas en lenguaje natural
 
             $table->foreignId('user_id')
                   ->constrained()

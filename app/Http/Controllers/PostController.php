@@ -14,7 +14,21 @@ class PostController extends Controller
      */
     public function index()
     {
-        return Post::all();
+        // return Post::all();
+
+        // ------------ Filtrar los posts por dos palabras, en este caso solo coincide si están juntas
+        // return Post::where('body', 'like', '%consequatur optio%')->get();
+
+        // ------------ Filtrar los posts por dos palabras, en este caso si tiene ambas palabras en el body
+        /* return Post::where('body', 'like', '%consequatur%')
+                   ->orWhere('body', 'like', '%optio%')
+                   ->orderBy('id', 'desc')
+                   ->get(); */
+
+        // ------------ El resultado es equivalente a orWhere
+        return Post::whereFullText('body', 'consequatur optio')
+                   ->orderBy('id', 'desc')
+                   ->get();
     }
 
     /**
