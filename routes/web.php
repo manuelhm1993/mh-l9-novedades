@@ -2,8 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\CustomClasses\Acciones;
+
 use App\Models\Color;
 use App\Enums\Category;
+use App\Enums\Color as EnumsColor;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +20,18 @@ use App\Enums\Category;
 */
 
 Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/actions', function () {
+    $user  = Acciones::nuevoUsuario("Manuel Henriquez", "manuel@mhenriquez.com", "12345678");
+    $color = Acciones::nuevoColor(EnumsColor::RED);
+
+    return [$user, $color];
+});
+
+
+Route::get('/color', function () {
     $color = Color::first();
 
     return $color->name->colorMatch();

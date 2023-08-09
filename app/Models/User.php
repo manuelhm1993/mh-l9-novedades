@@ -68,4 +68,13 @@ class User extends Authenticatable
             set: fn ($value) => strtolower($value), // ------------------ Transforma a minúsculas al registrar: Mutador
         );
     }
+
+    // ------------------ Definir relaciones
+    /**
+     * Get the user's posts. One to Many
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
