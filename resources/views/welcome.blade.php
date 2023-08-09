@@ -46,21 +46,30 @@
                 <textarea name="description" id="description" cols="30" rows="10">{{ old('description') }}</textarea>
             </div>
 
+            {{-- Se puede usar la directiva @dump para verificar datos --}}
+            {{-- @dump(old('fruits')) --}}
+
+            @php
+                // ------------- Para no repetir el helper en todos los casos, se guarda el resultado en una variable
+                $fruits = old('fruits');
+            @endphp
+
             <div>
                 <p>Frutas favoritas</p>
 
                 <label>
-                    <input type="checkbox" name="fruits[]" value="1">
+                    {{-- checked recibe un boolean, entones se comprueba si es un array y si contiene el valor del input --}}
+                    <input type="checkbox" name="fruits[]" value="1" @checked(is_array($fruits) && in_array(1, $fruits))>
                     Banana
                 </label>
 
                 <label>
-                    <input type="checkbox" name="fruits[]" value="2">
+                    <input type="checkbox" name="fruits[]" value="2" @checked(is_array($fruits) && in_array(2, $fruits))>
                     Manzana
                 </label>
 
                 <label>
-                    <input type="checkbox" name="fruits[]" value="3">
+                    <input type="checkbox" name="fruits[]" value="3" @checked(is_array($fruits) && in_array(3, $fruits))>
                     Pera
                 </label>
             </div>
@@ -69,12 +78,12 @@
                 <p>Active</p>
 
                 <label>
-                    <input type="radio" name="active" value="1">
+                    <input type="radio" name="active" value="1" @checked(old('active') == 1)>
                     Yes
                 </label>
 
                 <label>
-                    <input type="radio" name="active" value="0">
+                    <input type="radio" name="active" value="0" @checked(old('active') == 0)>
                     No
                 </label>
             </div>
@@ -83,9 +92,9 @@
                 <p>País</p>
 
                 <select name="country" id="country">
-                    <option value="1">Venezuela</option>
-                    <option value="2">Colombia</option>
-                    <option value="3">Chile</option>
+                    <option value="1" @selected(old('country') == 1)>Venezuela</option>
+                    <option value="2" @selected(old('country') == 2)>Colombia</option>
+                    <option value="3" @selected(old('country') == 3)>Chile</option>
                 </select>
             </div>
 
