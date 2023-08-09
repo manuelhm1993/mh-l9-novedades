@@ -1,7 +1,6 @@
 <?php
 
-use App\CustomClasses\Auto;
-use App\Enums\Color;
+use App\Models\Color;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,13 +15,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    $audi = new Auto();
+    // $color = Color::RED;
 
-    // ---------- Se almacena el color en una variable y devolverá un enum con sus propiedades name y value
-    $color = Color::RED;
+    // $user = User::create([
+    //     "name"     => "Manuel Henriquez",
+    //     "email"    => "manuel@mhenriquez.com",
+    //     "password" => bcrypt('12345678')
+    // ]);
 
-    // ---------- Se accede a la propiedad o el método según se requiera
-    $audi->setColor($color->colorMatch());
+    // $nuevoColor = ModelsColor::create([
+    //     'name' => $color->value
+    // ]);
 
-    return $audi->getColor();
+    $color = Color::first();
+
+    return $color->name->colorMatch();
 });
