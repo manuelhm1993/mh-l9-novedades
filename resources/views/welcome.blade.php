@@ -46,6 +46,11 @@
                 </div>
 
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
+                    {{-- Llamar al componente --}}
+                    <x-alert>
+                        <p>Esto es un contenido dinámico</p>
+                    </x-alert>
+
                     <div class="grid grid-cols-1 md:grid-cols-2">
                         <div class="p-6">
                             <div class="flex items-center">
