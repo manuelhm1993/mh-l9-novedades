@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
 
 use App\CustomClasses\Acciones;
 
@@ -47,6 +48,21 @@ Route::get('/color', function () {
 Route::get('/category/{category}', function (Category $category) {
     return $category->value;
 });
+
+// --------------- Ruta POST para procesar el formulario
+Route::post('/procesar', function (Request $request) {
+    // --------------- Validando el formulario
+    $request->validate([
+        'name'        => 'required',
+        'description' => 'required',
+        'fruits'      => 'required',
+        'active'      => 'required',
+        'country'     => 'required',
+    ]);
+
+    return $request->all();
+
+})->name('procesar');
 
 // --------------- scopeBindings verifica si el post le pertenece al usuario, en caso contrario retorna 404
 // --------------- Para que funcione se deben definir las relaciones en los modelos y se puede aplicar a un grupo
