@@ -26,7 +26,30 @@ use App\Http\Controllers\PostController;
 */
 
 Route::get('/', function () {
+    // ----------- Forma tradicional de redireccionar a una ruta con nombre
+    // return redirect()->route('welcome');
+
+    // ----------- Nuevo helper to_route
+    return to_route('welcome');
+});
+
+Route::get('/welcome', function () {
     return view('welcome');
+})->name('welcome');
+
+Route::get('/helpers', function () {
+    $nombre = "Manuel";
+
+    // ----------- Nuevo helper str, permite muchas funciones como agregar texto a una cadena
+    $nombre = str($nombre)->append(' Henriquez');
+
+    // ----------- Crear un slug con el separador '-'
+    $slug = str()->slug($nombre);
+
+    // ----------- Crear un slug con el separador '_'
+    $snake = str($nombre)->slug('_');
+
+    return [$nombre, $slug, $snake];
 });
 
 // ------------------- Crea un usuario y un color
