@@ -1,6 +1,6 @@
 <?php
 
-use App\CustomClass\Auto;
+use App\CustomClasses\Auto;
 use App\Enums\Color;
 use Illuminate\Support\Facades\Route;
 

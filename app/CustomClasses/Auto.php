@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CustomClass;
+namespace App\CustomClasses;
 
 use App\Enums\Color;
 
