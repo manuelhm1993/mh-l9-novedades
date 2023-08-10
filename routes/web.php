@@ -26,16 +26,20 @@ use App\Http\Controllers\PostController;
 */
 
 Route::get('/', function () {
+    return view('welcome');
+});
+
+Route::get('/redirect', function () {
     // ----------- Forma tradicional de redireccionar a una ruta con nombre
     // return redirect()->route('welcome');
 
     // ----------- Nuevo helper to_route
-    return to_route('welcome');
+    return to_route('welcome2');
 });
 
-Route::get('/welcome', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/welcome2', function () {
+    return view('welcome2');
+})->name('welcom2');
 
 Route::get('/helpers', function () {
     $nombre = "Manuel";
