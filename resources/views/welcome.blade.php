@@ -22,6 +22,9 @@
         @php
             // ---------- Simular recibir un valor de BBDD
             $color = "red";
+
+            // ---------- El componente que se debe mostrar, la 1
+            $alert = "alert";
         @endphp
 
         <div class="container mx-auto">
@@ -47,13 +50,14 @@
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere doloribus, quisquam eius numquam autem, error accusamus architecto enim libero ab ad soluta facilis suscipit fugiat, culpa ducimus corrupti. Dignissimos, obcaecati!
             </x-alert2>
 
-            <x-alert2>
-                <x-slot:titulo>
-                    Titulo de prueba 2
-                </x-slot:titulo>
+            {{-- Componentes dinámicos, se renderizan en base a un valor dado en tiempo de ejecución --}}
+            <x-dynamic-component :component="$alert">
+                <x-slot:title>
+                    Título dinámico
+                </x-slot:title>
 
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere doloribus, quisquam eius numquam autem, error accusamus architecto enim libero ab ad soluta facilis suscipit fugiat, culpa ducimus corrupti. Dignissimos, obcaecati!
-            </x-alert2>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda neque architecto sed quis omnis perspiciatis, ut cum totam hic voluptatibus beatae, earum expedita id consectetur minus vel laboriosam delectus obcaecati.
+            </x-dynamic-component>
         </div>
     </body>
 </html>
