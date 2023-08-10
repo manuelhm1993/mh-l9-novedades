@@ -21,7 +21,7 @@
     <body>
         @php
             // ---------- Simular recibir un valor de BBDD
-            $color = "indigo";
+            $color = "red";
         @endphp
 
         <div class="container mx-auto">
@@ -39,23 +39,21 @@
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi blanditiis necessitatibus reiciendis, soluta voluptate adipisci totam minima tempora culpa iure, expedita sit, voluptatum consequatur praesentium maxime illum voluptatem? Veniam, distinctio!
             </x-alert>
 
-            <x-alert>
-                {{-- slot con nombre, x-sol:nombre-variable --}}
-                <x-slot:title>
-                    Título 2
-                </x-slot:title>
+            <x-alert2 color="indigo" class="mb-4">
+                <x-slot:titulo>
+                    Titulo de prueba
+                </x-slot:titulo>
 
-                Hola mundo
-            </x-alert>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere doloribus, quisquam eius numquam autem, error accusamus architecto enim libero ab ad soluta facilis suscipit fugiat, culpa ducimus corrupti. Dignissimos, obcaecati!
+            </x-alert2>
 
-            <x-alert color="red">
-                {{-- slot con nombre, x-sol:nombre-variable --}}
-                <x-slot:title>
-                    Título 3
-                </x-slot:title>
+            <x-alert2>
+                <x-slot:titulo>
+                    Titulo de prueba 2
+                </x-slot:titulo>
 
-                Hola mundo 2
-            </x-alert>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facere doloribus, quisquam eius numquam autem, error accusamus architecto enim libero ab ad soluta facilis suscipit fugiat, culpa ducimus corrupti. Dignissimos, obcaecati!
+            </x-alert2>
         </div>
     </body>
 </html>
