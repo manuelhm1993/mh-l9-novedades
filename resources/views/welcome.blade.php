@@ -20,10 +20,28 @@
     </head>
     <body>
         <div class="container mx-auto">
-            {{-- Esta etiqueta referencia al método render de la clase Alert --}}
-            <x-alert color="red" />
+            {{-- Llama a un componente simple y pasa un parámetro --}}
+            {{-- <x-alert color="red" /> --}}
 
-            <x-alert />
+            {{-- Llama al componente y le manda información a slot --}}
+            <x-alert color="red">
+                {{-- slot con nombre, sirve para enviar parámetros largos --}}
+                <x-slot:title>
+                    Título 1
+                </x-slot:title>
+
+                {{-- Al usar tag de apertura y cierre, se invoca a slot, para renderizar contenido extenso --}}
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Excepturi blanditiis necessitatibus reiciendis, soluta voluptate adipisci totam minima tempora culpa iure, expedita sit, voluptatum consequatur praesentium maxime illum voluptatem? Veniam, distinctio!
+            </x-alert>
+
+            <x-alert>
+                {{-- slot con nombre, x-sol:nombre-variable --}}
+                <x-slot:title>
+                    Título 2
+                </x-slot:title>
+
+                Hola mundo
+            </x-alert>
         </div>
     </body>
 </html>
