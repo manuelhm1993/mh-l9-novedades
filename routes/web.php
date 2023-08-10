@@ -113,3 +113,12 @@ Route::controller(PostController::class)->name('posts.')->group(function () {
     Route::get('/posts', 'index')->name('index');
     Route::get('/posts/{post}', 'show')->name('show');
 });
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
