@@ -5,6 +5,9 @@
     <p class="font-bold">{{ $title }}</p>
     <p class="text-sm">{{ $slot }}</p>
 
+    {{-- El método se llama normalmente, pero se trata como una variable --}}
+    {{ $colorValidate() }}
+
     {{-- $attributes es un array indexado --}}
     {{-- @dump($attributes) --}}
 

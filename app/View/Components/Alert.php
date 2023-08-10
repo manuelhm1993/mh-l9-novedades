@@ -29,4 +29,11 @@ class Alert extends Component
     {
         return view('components.alert');
     }
+
+    // ---------------- Al ser un componente de clase, se pueden definir métodos propios
+    public function colorValidate() {
+        if($this->color === 'red') {
+            return "Esta es una alerta de peligro";
+        }
+    }
 }
